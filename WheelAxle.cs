@@ -42,7 +42,13 @@ public class WheelAxle
         CorrectStiffness();
 
         SyncMeshTransform();
-    }    
+    }  
+    
+    public void ConfigureVehicleSubsteps(float speedThreshold, int speedBelowThreshold, int stepsAboveThreshold)
+    {
+        leftWheelCollider.ConfigureVehicleSubsteps(speedThreshold, speedBelowThreshold, stepsAboveThreshold);
+        rightWheelCollider.ConfigureVehicleSubsteps(speedThreshold, speedBelowThreshold, stepsAboveThreshold);
+    }
 
     public void ApplySteerAngle(float steerAngle, float wheelBaseLenght)
     {

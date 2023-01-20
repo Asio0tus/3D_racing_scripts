@@ -33,13 +33,25 @@ public class CarInputControl : MonoBehaviour
     {
         if (Mathf.Sign(verticalAxis) == Mathf.Sign(wheelSpeed) || Mathf.Abs(wheelSpeed) < 0.5f)
         {
-            car.ThrottleControl = verticalAxis;
+            car.ThrottleControl = Mathf.Abs(verticalAxis);
             car.BrakeControl = 0;
         }
         else
         {
             car.ThrottleControl = 0;
             car.BrakeControl = brakeCurve.Evaluate(wheelSpeed / car.MaxSpeed);
+        }
+
+        //Gear
+
+        if(verticalAxis < 0 && wheelSpeed > -0.5f && wheelSpeed <= 0.5f)
+        {
+            car.ShiftToReverseGear();
+        }
+
+        if (verticalAxis > 0 && wheelSpeed > -0.5f && wheelSpeed < 0.5f)
+        {
+            car.ShiftToFirstGear();
         }
     }
 

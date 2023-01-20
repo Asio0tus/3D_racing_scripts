@@ -38,6 +38,11 @@ public class CarChassis : MonoBehaviour
 
         if(centerOfMass != null)
             rigidbody.centerOfMass = centerOfMass.localPosition;
+        
+        foreach(var wheelAxle in wheelAxles)
+        {
+            wheelAxle.ConfigureVehicleSubsteps(50, 50, 50);
+        }
     }
 
     private void FixedUpdate()
