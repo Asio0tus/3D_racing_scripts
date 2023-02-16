@@ -10,7 +10,7 @@ public class WheelEffects : MonoBehaviour
     [SerializeField] private float forwardSlipLimit;
     [SerializeField] private float sidewaySlipLimit;
 
-    [SerializeField] private new AudioSource skidAudio;
+    [SerializeField] private new AudioSource skidSound;
 
     [SerializeField] private GameObject skidPrefab;
 
@@ -37,7 +37,7 @@ public class WheelEffects : MonoBehaviour
                     if (skidTrail[i] == null) 
                         skidTrail[i] = Instantiate(skidPrefab).transform;
 
-                    if (skidAudio.isPlaying == false) skidAudio.Play();
+                    if (skidSound.isPlaying == false) skidSound.Play();
 
                     if(skidTrail[i] != null)
                     {
@@ -58,6 +58,6 @@ public class WheelEffects : MonoBehaviour
             wheelSmoke[i].Stop();
         }
 
-        if (isSlip == false) skidAudio.Stop();
+        if (isSlip == false) skidSound.Stop();
     }
 }
