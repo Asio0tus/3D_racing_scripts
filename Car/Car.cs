@@ -40,6 +40,7 @@ public class Car : MonoBehaviour
 
 
     private CarChassis carChassis;
+    public Rigidbody Rigidbody => carChassis == null? GetComponent<CarChassis>().Rigidbody: carChassis.Rigidbody;
 
     //public for DEBUG
     public float ThrottleControl;
@@ -52,10 +53,10 @@ public class Car : MonoBehaviour
 
     public float EngineRpm => engineRpm;
     public float EngineMaxRpm => engineMaxRpm;
-
+       
 
     private void Start()
-    {
+    {  
         carChassis = GetComponent<CarChassis>();
     }
 

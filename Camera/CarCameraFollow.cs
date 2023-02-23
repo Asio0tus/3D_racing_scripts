@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
-{
-    [SerializeField] private Transform target;
-    [SerializeField] private new Rigidbody rigidbody;
-
+public class CarCameraFollow : CarCameraComponent
+{   
     [Header("Offset")]
     [SerializeField] private float viewHeight;
     [SerializeField] private float height;
@@ -17,6 +14,9 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float heightDamping;
     [SerializeField] private float speedThreshold;
 
+    private Transform target;
+    private new Rigidbody rigidbody;
+        
     private void FixedUpdate()
     {
         Vector3 velocity = rigidbody.velocity;
@@ -38,5 +38,13 @@ public class CameraFollow : MonoBehaviour
 
         // Rotation
         transform.LookAt(target.position + new Vector3(0, viewHeight, 0));
+    }
+
+    public override void SetProperties(Car car, Camera camera)
+    {
+        base.SetProperties(car, camera);
+
+        target = car.transform;
+        rigidbody = car.Rigidbody;
     }
 }

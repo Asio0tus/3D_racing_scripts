@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFovCorrector : MonoBehaviour
-{
-    [SerializeField] private Car carPlayer;
-    [SerializeField] private new Camera camera;
-
+public class CarCameraFovCorrector : CarCameraComponent
+{  
     [SerializeField] private float minFieldOfView;
     [SerializeField] private float maxFieldOfView;
 
@@ -19,6 +16,6 @@ public class CameraFovCorrector : MonoBehaviour
 
     private void Update()
     {
-        camera.fieldOfView = Mathf.Lerp(minFieldOfView, maxFieldOfView, carPlayer.NormilizeLinearVelocity);
+        camera.fieldOfView = Mathf.Lerp(minFieldOfView, maxFieldOfView, car.NormilizeLinearVelocity);
     }
 }

@@ -40,7 +40,7 @@ public class CarInputControl : MonoBehaviour
         {
             car.ThrottleControl = 0;
             car.BrakeControl = brakeCurve.Evaluate(wheelSpeed / car.MaxSpeed);
-        }
+        }        
 
         //Gear
 
@@ -73,6 +73,17 @@ public class CarInputControl : MonoBehaviour
         {
             car.BrakeControl = brakeCurve.Evaluate(wheelSpeed / car.MaxSpeed) * autoBrakeStrength;
         }
+    }
+
+    public void StopCar()
+    {
+        verticalAxis = 0;
+        horizontalAxis = 0;
+        handBrakeAxis = 0;
+
+        car.ThrottleControl = 0;
+        car.SteerControl = 0;
+        car.BrakeControl = 1;
     }
 
 }

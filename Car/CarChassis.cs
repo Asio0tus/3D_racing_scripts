@@ -29,6 +29,7 @@ public class CarChassis : MonoBehaviour
     public float LinearVelocity => rigidbody.velocity.magnitude * 3.6f;
 
     private new Rigidbody rigidbody;
+    public Rigidbody Rigidbody => rigidbody == null? GetComponent<Rigidbody>(): rigidbody;
 
     private const float K = 0.1885f;
 
