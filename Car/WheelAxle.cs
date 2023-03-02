@@ -90,7 +90,7 @@ public class WheelAxle
 
     public float GetAvarageRpm()
     {
-        return (leftWheelCollider.rpm + rightWheelCollider.rpm) * 0.5f;
+        return (leftWheelCollider.rpm + rightWheelCollider.rpm) * 0.5f;        
     }
 
     public float GetWheelRadius()

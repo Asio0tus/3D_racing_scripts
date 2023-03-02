@@ -60,9 +60,9 @@ public class CarChassis : MonoBehaviour
         foreach(var wheelAxle in wheelAxles)
         {
             sum += wheelAxle.GetAvarageRpm();
-        }
+        }       
 
-        return sum / wheelAxles.Length;
+        return sum / wheelAxles.Length; 
     }
 
     public float GetWheelSpeed()
@@ -86,6 +86,8 @@ public class CarChassis : MonoBehaviour
             wheelAxles[i].ApplyMotorTorque(MotorTorque / amountMotorWheel);
             wheelAxles[i].ApplySteerAngle(SteerAngle, wheelBaseLenght);
             wheelAxles[i].ApplyBrakeTorque(BrakeTorque);
+
+            //print($"Мотор - {MotorTorque}, тормоз - {BrakeTorque}");
         }
     }
 

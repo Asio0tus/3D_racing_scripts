@@ -72,6 +72,10 @@ public class Car : MonoBehaviour
         carChassis.MotorTorque = engineTorque * ThrottleControl;
         carChassis.BrakeTorque = maxBrakeTorque * BrakeControl;
         carChassis.SteerAngle = maxSteerAngle * SteerControl;
+
+        //print($"engineTorque  {engineTorque} || ThrottleControl {ThrottleControl}");
+        //print(selectedGear);
+        //print(engineRpm);
     }
        
 

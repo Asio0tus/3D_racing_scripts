@@ -27,6 +27,8 @@ public class CarInputControl : MonoBehaviour
         UpdateSteer();     
                 
         UpdateAutoBrake();
+
+        //print(wheelSpeed);
     }    
 
     private void UpdateThrottleAndBrake()
@@ -44,12 +46,12 @@ public class CarInputControl : MonoBehaviour
 
         //Gear
 
-        if(verticalAxis < 0 && wheelSpeed > -0.5f && wheelSpeed <= 0.5f)
+        if(verticalAxis < 0 && car.Speed <= 0) //wheelSpeed > -0.5f && wheelSpeed <= 0.5f
         {
             car.ShiftToReverseGear();
         }
 
-        if (verticalAxis > 0 && wheelSpeed > -0.5f && wheelSpeed < 0.5f)
+        if ((verticalAxis > 0 && wheelSpeed > -0.5f && wheelSpeed <= 0.5f)) //|| (verticalAxis > 0 && car.Speed > 0 && car.SelectedGear < 0)
         {
             car.ShiftToFirstGear();
         }

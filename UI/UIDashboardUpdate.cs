@@ -52,7 +52,7 @@ public class UIDashboardUpdate : MonoBehaviour
         if(Mathf.Abs(arrowRpm.position.z) > currentRpmDeg) angleZ = Mathf.Abs(arrowRpm.position.z) - currentRpmDeg;
         if(Mathf.Abs(arrowRpm.position.z) < currentRpmDeg) angleZ = -(currentRpmDeg - Mathf.Abs(arrowRpm.position.z));
 
-        arrowRpm.rotation = Quaternion.Euler(0, 0, angleZ);
+        arrowRpm.rotation = Quaternion.Euler(0, 0, angleZ);      
 
     }
 
