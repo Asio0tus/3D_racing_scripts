@@ -8,7 +8,7 @@ public class ActivateTrackPoint : TrackPoint
 
     private void Start()
     {
-        activeTargetPointSFX.SetActive(false);
+        activeTargetPointSFX.SetActive(isTarget);
     }
 
     protected override void OnPassed()

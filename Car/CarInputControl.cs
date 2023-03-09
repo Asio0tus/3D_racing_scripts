@@ -79,13 +79,19 @@ public class CarInputControl : MonoBehaviour
 
     public void StopCar()
     {
+        Reset();
+
+        car.BrakeControl = 1;
+    }
+
+    public void Reset()
+    {
         verticalAxis = 0;
         horizontalAxis = 0;
         handBrakeAxis = 0;
 
         car.ThrottleControl = 0;
         car.SteerControl = 0;
-        car.BrakeControl = 1;
+        car.BrakeControl = 0;
     }
-
 }

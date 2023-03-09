@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIDashboardUpdate : MonoBehaviour
+public class UIDashboardUpdate : MonoBehaviour, IDependency<RaceStateTracker>
 {
     private const float DASHBOARD_MAX_RPM = 9000f;
     private const float DASHBOARD_MAX_DEG_RPM = 180f;
@@ -18,15 +19,43 @@ public class UIDashboardUpdate : MonoBehaviour
     [SerializeField] private Text speedText;
     [SerializeField] private Car playerCar;
 
+    [SerializeField] private GameObject dashboardUI;
+
     private float currentSpeedDeg;
     private float currentRpmDeg;
 
+    private RaceStateTracker raceStateTracker;
+    public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
+
+    private void Start()
+    {
+        raceStateTracker.PeparationStarted += OnRaceStarted;
+        raceStateTracker.Completed += OnRaceCompleted;
+
+        dashboardUI.SetActive(false);
+    }    
+
+    private void OnDestroy()
+    {
+        raceStateTracker.PeparationStarted -= OnRaceStarted;
+        raceStateTracker.Completed -= OnRaceCompleted;
+    }
 
     private void Update()
     {
         UpdateRpmDisplay();
         UpdateSpeedDisplay();
         UpdateGearDisplay();
+    }
+
+    private void OnRaceCompleted()
+    {
+        dashboardUI.SetActive(false);
+    }
+
+    private void OnRaceStarted()
+    {
+        dashboardUI.SetActive(true);
     }
 
     private void UpdateSpeedDisplay()

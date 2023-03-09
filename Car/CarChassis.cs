@@ -70,6 +70,12 @@ public class CarChassis : MonoBehaviour
         return GetAverageRpm() * ((wheelAxles[0].GetWheelRadius() + wheelAxles[1].GetWheelRadius()) / 2) * 2 * K;
     }
 
+    public void Reset()
+    {
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+    }
+
     private void UpdateWheelAxles()
     {
         int amountMotorWheel = 0;

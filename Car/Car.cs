@@ -132,4 +132,25 @@ public class Car : MonoBehaviour
     {
         return selectedGearIndex;
     }
+
+    public void Respawn(Vector3 position, Quaternion rotation)
+    {
+        Reset();
+        
+        transform.position = position;
+        transform.rotation = rotation;
+    }
+
+    private void Reset()
+    {
+        carChassis.Reset();
+
+        carChassis.MotorTorque = 0;
+        carChassis.BrakeTorque = 0;
+        carChassis.SteerAngle = 0;
+
+        ThrottleControl = 0;
+        BrakeControl = 0;
+        SteerControl = 0;
+    }
 }
