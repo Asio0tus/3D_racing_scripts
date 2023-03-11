@@ -25,10 +25,14 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceStateTracker>, IDep
     private RaceTimeTracker raceTimeTracker;
     public void Construct(RaceTimeTracker obj) => raceTimeTracker = obj;
 
+    private void Awake()
+    {
+        Load();
+    }
+
     private void Start()
     {
-        raceStateTracker.Completed += OnRaceCopmleted;
-        Load();
+        raceStateTracker.Completed += OnRaceCopmleted;        
     }
     private void OnDestroy()
     {
@@ -36,18 +40,19 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceStateTracker>, IDep
     }
 
     private void OnRaceCopmleted()
-    {   
-        if(raceTimeTracker.CurrentTime > playerRecortTime || playerRecortTime == 0)
+    {
+        currentTime = raceTimeTracker.CurrentTime;
+
+        if (raceTimeTracker.CurrentTime > playerRecortTime || playerRecortTime == 0)
             playerRecortTime = raceTimeTracker.CurrentTime;
 
         if (raceTimeTracker.CurrentTime < goldTime)
         {
             goldTime = raceTimeTracker.CurrentTime;
-            Save();
-            ResultUpdated?.Invoke();
-        }           
+            Save();            
+        }
 
-        currentTime = raceTimeTracker.CurrentTime;       
+        ResultUpdated?.Invoke();
     }
 
     private void Save()
